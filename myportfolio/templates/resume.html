@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Ashwani</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <section id="navbar">
+        {% include 'components/navbar.html' %}
+    </section>
+
+    <!-- Resume Heading -->
+    <section id="heading">
+        <h1>My Resume</h1>
+        <p>You can view my resume below or download it directly.</p>
+    </section>
+
+    <!-- Resume Preview -->
+    <section id="resume-preview">
+        <h2>Resume Preview</h2>
+        <!-- Option 1: Embed PDF -->
+         <a href="{% static 'assets/resume.pdf' %}" target="_blank">Download Resume</a>
+    </section>
+
+    <!-- Download Button -->
+    <section id="download">
+        <h2>Download</h2>
+        <a href="{% static 'assets/resume.pdf' %}" download>Download My Resume (PDF)</a>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <p>© 2025 Ashwani</p>
+    </section>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-<% load static %>
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +8,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-    <div name="footer">
+    
+    <!-- Navbar -->
+    <section id="footer">
+        {% include 'components/navbar.html' %}
+    </section>
 
-    </div>
-    <div>
+    <!-- Hero Section -->
+    <section id="Content">
+        <div id="heading">
+            <header>
+                <h2>Ashwani Saraswat</h2>
+                <h4><b>Hello I am a Python webdeveloper and pursuing B.Tech from Computer Science branch in Arya Institute of Engineering and Technology</b></h4>
+                <p><b>B.Tech Student | Aspiring Software Developer</b></p>
+                <a href="{% url 'projects' %}" class="btn btn-primary">Projects</a>
+                <a href="{% url 'resume' %}" class="btn btn-primary">resume</a>
+            </header>
 
-    </div>
-    <div>
+            <div id="links">
+                <a href="">Git</a>
+                <a href="">LinkedIn</a>
+                <a href="">Insta</a>
+                <a href="">Extra</a>
+            </div>
 
-    </div>
-    <div>
+            <div id="image">
+                <img src="{% static 'assets/Aizen.png' %}" width="50%" height="600px" alt="My image">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="container">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
         
-    </div>
+        <h2>Skills</h2>
+        <div>
+            <div>
+                python
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div>django</div>
+            <div>data analysis</div>
+        </div>
+    </section>
+
+    <!-- Connection Section -->
+    <section id="connection">
+        <p>Want to work together or connect</p>
+        <img src="" alt="banner">
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <p>© 2025 Ashwani</p>
+    </section>
+
 </body>
 </html>
