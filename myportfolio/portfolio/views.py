@@ -1,5 +1,8 @@
+import requests
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.mail import send_mail
+from .models import contact as ContactMessage
 from .forms import contactform, registrationform
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
@@ -11,9 +14,6 @@ def projects(request):
 
 def resume(request):
     return render(request, "resume.html")
-
-def contact(request):
-    return render(request, "contact.html")
 
 def loginview(request):
     if request.method=='POST':
@@ -77,3 +77,9 @@ def contact_view(request):
         messages.success(request, "Your message has been sent successfully!")
     
     return render(request, "contact.html")
+
+
+'''def projects(request):
+    response = requests.get("http://127.0.0.1:8000/api/projects/")
+    projects = response.json()
+    return render(request, "project.html", {'projects': projects})'''

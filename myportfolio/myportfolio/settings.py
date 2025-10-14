@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.auth.context_processors",  # Add this line
     "portfolio",
+    "rest_framework",
 
 ]
 
