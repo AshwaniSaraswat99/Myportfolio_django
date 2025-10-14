@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h2 class="mb-3">Create Your Account</h2>
+    <p class="mb-4">Welcome! Please fill in the details below to register.</p>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <script src="{% static 'components/timing_msg.js' %}"></script>
+    <form method="post">
+        {% csrf_token %}
+        {% if form %}
+            {{ form.as_p }}
+        {% else %}
+            <p>Registration form not available.</p>
+        {% endif %}
+        {% if form.errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
