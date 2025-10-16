@@ -1,7 +1,7 @@
 services:
   - type: web
     name: myportfolio-django
-    runtime: python3
+    runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn myportfolio.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
