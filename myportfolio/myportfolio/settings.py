@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.file
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,20 +23,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rjnz$kq4fzj0^5)7i5hlb9ziyzmcin4-k2b@o)(c(k)5bf2cm@"
-
+SECRET_KEY = os.getenv('SECRET_KEY','fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ashwanisaraswat40@gmail.com'
-EMAIL_HOST_PASSWORD = 'dqfk xldb jqxe jpee' # not your Gmail password!
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Replace with your Gmail
+EMAIL_HOST_PASSWORD =  os.getenv('EMAIL_HOST_PASSWORD')  # not your Gmail password!
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ 
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com'  # allows your Render domain automatically
+    ]
 
 
 # Application definition
@@ -87,7 +92,8 @@ WSGI_APPLICATION = "myportfolio.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'),conn_max_age=600,
+        ssl_require=True)
 }
 
 
