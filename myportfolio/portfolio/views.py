@@ -58,26 +58,37 @@ def contact(request):
     return render(request, "contact.html", {'form': form})
 
 def contact_view(request):
-    if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        msg = request.POST.get('message')
+    if request.method == 'POST':
+        form=contactform(request.POST)
+        if form.is_valid():
+            contact_instance=form.save()
+            subject=f"New Contact Message from {contact_instance.name}"
+            message=f"""
+You have received a new message:
 
-        # Save to database
-        contact = ContactMessage.objects.create(name=name, email=email, message=msg)
+Name: {contact_instance.name}
+Email: {contact_instance.email}
+Subject: {contact_instance.subj}
 
-        # Send email
-        send_mail(
-            subject=f"New Contact Message from {name}",
-            message=f"Name: {name}\nEmail: {email}\nMessage:\n{msg}",
-            from_email=None,       # uses DEFAULT_FROM_EMAIL
-            recipient_list=['your_email@gmail.com'],  # where you want to receive
-        )
+Message:
+{contact_instance.message}
+"""
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                ['ashwanisaraswat40@gmail.com'],  # your preferred contact email
+                fail_silently=False,
+            )
 
-        messages.success(request, "Your message has been sent successfully!")
-    
-    return render(request, "contact.html")
+            messages.success(request, "Your message has been sent successfully!")
+            return redirect('contact')
+        else:
+            messages.error(request, "Please check your form details.")
+    else:
+        form = contactform()
 
+    return render(request, 'contact.html', {'form': form})
 
 '''def projects(request):
     response = requests.get("http://127.0.0.1:8000/api/projects/")

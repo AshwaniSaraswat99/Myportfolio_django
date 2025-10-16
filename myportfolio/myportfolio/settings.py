@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,6 +26,14 @@ SECRET_KEY = "django-insecure-rjnz$kq4fzj0^5)7i5hlb9ziyzmcin4-k2b@o)(c(k)5bf2cm@
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ashwanisaraswat40@gmail.com'
+EMAIL_HOST_PASSWORD = 'dqfk xldb jqxe jpee' # not your Gmail password!
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ALLOWED_HOSTS = []
 
@@ -78,11 +87,9 @@ WSGI_APPLICATION = "myportfolio.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -130,7 +137,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ashwanisaraswat40@gmail.com'  # Replace with your Gmail
-EMAIL_HOST_PASSWORD = 'Shaurya@9411'  # Use Gmail App Password
+EMAIL_HOST_PASSWORD = 'dqfk xldb jqxe jpee'  # Use Gmail App Password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Default primary key field type
