@@ -1,4 +1,0 @@
-django
-djangorestframework
-pillow
-dj_database_url
