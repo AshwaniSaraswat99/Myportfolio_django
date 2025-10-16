@@ -16,7 +16,7 @@ import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env.file
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "myportfolio.urls"
+ROOT_URLCONF = "urls"
 
 TEMPLATES = [
     {
@@ -85,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "myportfolio.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 
 # Database
